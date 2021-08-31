@@ -13,5 +13,7 @@ app.use(router);
 app.get('/', (req,res) => {
     res.sendFile('index.html', {root: __dirname + '/public'});
 });
-
+app.get('/final',(req,res)=>{
+    res.sendFile('final.html',{root:__dirname+'/public'});
+})
 module.exports = app;

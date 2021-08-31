@@ -1,12 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NodeServer</title>
-</head>
-<body>
-    <h1>Welcome to our Server... You can hit your routes now..</h1>
+<html>
+  <head>
+    <title>Node.js Send Email</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <style>
+        .container{
+            background: white;
+            width:60vh;
+            padding: 3em;
+            height: 90vh;
+            border-radius: 20px;
+             border-left: 1px solid rgba(255,255,255,0.3);;
+             border-top: 1px solid rgba(255,255,255,0.3);;
+             background-image: linear-gradient(to bottom right, #FF9EC4, #FFD07E);
+            backdrop-filter: blur(10px);
+             box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+            text-align: center;
+             position: relative;
+        }
+        
+    </style>
+  </head>
+  <body>
+    <h1 class="text-center">
+        Email With Attachment
+    </h1>
+      <div class="container">
+          
+          <form action="/sendemail" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="email" name="to" required placeholder="To:">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="subject" placeholder="Subject:" required id="">
+            </div>
+            <div class="form-group">
+                <textarea required class="form-control" name="body" id="" cols="30" rows="10" placeholder="Body:"></textarea>
+            </div>
+            <label for="attachment">Attachment:</label>
+            <div class="form-group">
+                <input type="file" required class="form-control" name="image" id="">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-block btn-danger">
+                    Send Message
+                </button>
+            </div>
+        </form>
+      </div>
 </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </html>
