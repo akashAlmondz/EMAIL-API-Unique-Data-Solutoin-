@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const multer = require('multer');
 var Storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, "./images");
+        callback(null, "images/");
     },
     filename: function (req, file, callback) {
         callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
@@ -20,7 +20,7 @@ exports.sendEmail = (req, res) => {
         } else {
             to = req.body.to
             subject = req.body.subject
-            body = req.body.subject
+            body = req.body.body
             path = req.file.path
 
             let transporter = nodemailer.createTransport({
@@ -29,7 +29,7 @@ exports.sendEmail = (req, res) => {
                 secure: false,
                 auth: {
                     user: process.env.SENDERMAIL,
-                    pass: process.env.PASS,
+                    pass: process.env.SENDERPASS,
                 },
                 tls: { secureProtocol: "TLSv1_method" },
             });
