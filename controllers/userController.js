@@ -49,12 +49,12 @@ exports.sendEmail = (req, res) => {
             transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
                     return res.status(200).json({
-                        message: error
+                        message: 'Email was not sent..!!',
+                        response: error
                     });
                 } else
-
+                    res.send({message: 'Email was sent successfully..!!', response: 'success'});
                     return res.redirect('/final');
-
             });
         }
     })
