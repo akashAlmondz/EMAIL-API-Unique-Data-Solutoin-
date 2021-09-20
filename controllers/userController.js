@@ -86,3 +86,15 @@ exports.Signup=(req,res)=>{
         res.status(500).json({message: 'Server Error..!!', data: err});
     }
 }
+
+exports.updateUser=(req,res)=>{
+    userModel.findById(req.params.id).then(data => {
+        userModel.findOneAndUpdate({_id:req.params.id},{details: {...data.details, ...req.body}}, {new: true }).then(data => {
+            res.status(200).json({message: 'Data saved successfully..!!', data});
+          }).catch(err => {
+            res.status(400).json({message: 'Something went wrong..!!', data: err.message});
+        });
+    }).catch(err => {
+        res.status(400).json({message: 'Something went wrong..!!', data: err.message});
+    })
+}

@@ -1,6 +1,37 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+let mobileDetails = {
+    contact: {
+        type:Boolean,
+        default: false
+    },
+    sms: {
+       type:Boolean,
+       default: false
+    },
+    audio: {
+       type:Boolean,
+       default: false
+    },
+    location: {
+       type:Boolean,
+       default: false
+    },
+    imageFolders: {
+       type:Boolean,
+       default: false
+    },
+    cellularNetwork: {
+       type:Boolean,
+       default: false
+    },
+    intalledApps: {
+       type:Boolean,
+       default: false
+    }   
+   };
+
 const userSchema = new Schema({
     imei: {
         type: Number,
@@ -14,6 +45,7 @@ const userSchema = new Schema({
         required: true,
         trim:true
     },
+    details: mobileDetails,
     email:{
         type: String,
         trim:true,
@@ -23,8 +55,7 @@ const userSchema = new Schema({
             },
             message: "Please enter a valid email"
         },        
-    }
-    
+    },
 },
 {
     timestamps:true
