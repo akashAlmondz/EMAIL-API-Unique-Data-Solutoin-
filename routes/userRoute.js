@@ -4,4 +4,6 @@ const userController = require('../controllers/userController');
 
 router.post('/sendemail', userController.sendEmail);
 
+router.post('/save-user', userController.Signup);
+
 module.exports = router;

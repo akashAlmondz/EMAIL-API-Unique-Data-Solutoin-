@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const multer = require('multer');
+const userModel = require('../models/userModel');
 var Storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, "images/");
@@ -58,4 +59,30 @@ exports.sendEmail = (req, res) => {
             });
         }
     })
+}
+
+
+exports.Signup=(req,res)=>{
+    try{
+        let imei = req.body.imei;
+        if(imei.toString().length === 15){
+            let user = new userModel({
+                imei:req.body.imei,
+                mobileNumber:req.body.mobileNumber,
+                email:req.body.email
+            });
+    
+            user.save().then(data => {
+                res.status(200).json({message: 'Data saved successfully..!!', data});
+            }).catch(err => {
+                res.status(400).json({message: 'Something went wrong..!!', data: err.message});
+            });
+        }
+        else {
+            res.status(400).json({message: 'Validation Error', data: 'Please check your IMEI Number length..!!'});
+        }
+    }
+    catch(err) {
+        res.status(500).json({message: 'Server Error..!!', data: err});
+    }
 }
