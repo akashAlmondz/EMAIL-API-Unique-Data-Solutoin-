@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGOURL, {useNewUrlParser: true, useUnifiedTopolog
     console.log('Connection Failed..!!', err);
 });
 
-app.use('/api/v1/',router);
+app.use(router);
 app.get('/', (req,res) => {
     res.sendFile('index.html', {root: __dirname + '/public'});
 });
