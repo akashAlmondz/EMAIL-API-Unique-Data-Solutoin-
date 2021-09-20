@@ -34,14 +34,16 @@ let mobileDetails = {
 
 const userSchema = new Schema({
     imei: {
-        type: Number,
+        type: String,
+        minlength:[15,"IMEI number must be of 15 digit"],
+        maxlength:[15,"IMEI number must be of 15 digit"],
         required: true,
         trim:true
     },
     mobileNumber: {
         type:String, 
         minlength:[10,"Phone number must be of 10 digit"],
-        maxlength:[10,"cannot be more tha 10 digit"],
+        maxlength:[10,"Phone number must be of 10 digit"],
         required: true,
         trim:true
     },
