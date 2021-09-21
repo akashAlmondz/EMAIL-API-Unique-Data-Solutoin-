@@ -26,7 +26,7 @@ let mobileDetails = {
        type:Boolean,
        default: false
     },
-    intalledApps: {
+    installedApps: {
        type:Boolean,
        default: false
     }   
