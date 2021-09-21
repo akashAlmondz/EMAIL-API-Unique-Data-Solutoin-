@@ -98,3 +98,13 @@ exports.updateUser=(req,res)=>{
         res.status(400).json({message: 'Something went wrong..!!', data: err.message});
     })
 }
+
+
+exports.getData=(req,res)=>{
+    const userId=req.params.userId;    
+    userModel.findById({_id:userId}).then(data=>{
+        res.status(200).json({ data})
+    }).catch(err=>{
+        res.status(400).json({message: 'Something went wrong..!!', data: err.message});
+    })
+}
