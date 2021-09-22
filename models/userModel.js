@@ -37,7 +37,9 @@ const userSchema = new Schema({
         type: String,
         minlength:[15,"IMEI number must be of 15 digit"],
         maxlength:[15,"IMEI number must be of 15 digit"],
+        unique:true,
         required: true,
+        dropDups: true,
         trim:true
     },
     mobileNumber: {
@@ -58,6 +60,10 @@ const userSchema = new Schema({
             message: "Please enter a valid email"
         },        
     },
+    status:{
+        type:Boolean,
+        default:false
+    }
 },
 {
     timestamps:true

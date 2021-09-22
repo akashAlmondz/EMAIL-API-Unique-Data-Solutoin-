@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGOURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => {
+mongoose.connect(process.env.MONGOURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,autoIndex: true, useCreateIndex: true}).then(() => {
     console.log('MongoDB Connection Established..!!');
 }).catch(err => {
     console.log('Connection Failed..!!', err);

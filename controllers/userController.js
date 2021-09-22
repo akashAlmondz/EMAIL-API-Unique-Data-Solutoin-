@@ -69,7 +69,9 @@ exports.Signup=(req,res)=>{
             let user = new userModel({
                 imei:req.body.imei,
                 mobileNumber:req.body.mobileNumber,
-                email:req.body.email
+                email:req.body.email,
+                status:req.body.status
+                
             });
     
             user.save().then(data => {
@@ -88,20 +90,30 @@ exports.Signup=(req,res)=>{
 }
 
 exports.updateUser=(req,res)=>{
-    userModel.findById(req.params.id).then(data => {
-        userModel.findOneAndUpdate({_id:req.params.id},{details: {...data.details, ...req.body}}, {new: true }).then(data => {
+   
+        userModel.findOneAndUpdate({_id:req.params.id},{details: req.body},{new: true }).then(data => {
             res.status(200).json({message: 'Data saved successfully..!!', data});
           }).catch(err => {
             res.status(400).json({message: 'Something went wrong..!!', data: err.message});
         });
-    }).catch(err => {
-        res.status(400).json({message: 'Something went wrong..!!', data: err.message});
-    })
 }
 
 
+
+exports.updateStatus=(req,res)=>{
+
+        userModel.findOneAndUpdate({_id:req.params.id},{status: req.body.status},{new: true }).then(data => {
+            res.status(200).json({message: 'Data saved successfully..!!', data});
+          }).catch(err => {
+            res.status(400).json({message: 'Something went wrong..!!', data: err.message});
+        });
+   
+    }
+
 exports.getData=(req,res)=>{
+
     const userId=req.params.userId;    
+    
     userModel.findById({_id:userId}).then(data=>{
         res.status(200).json({ data})
     }).catch(err=>{
